@@ -1,5 +1,5 @@
-import React, { useDebugValue, useState } from 'react'
-import { useDelete } from '../../../_Utils/Hooks'
+import React, {  useState } from 'react'
+import { useDeleteProject } from '../../../_Utils/Hooks'
 import Alert from '../../Alert/Alert'
 import { Link } from 'react-router-dom'
 import { BsThreeDots } from 'react-icons/bs'
@@ -7,7 +7,7 @@ const ProjectCard = ({ data = {}, deleteSuccess }) => {
 
   const [open, setOpen] = useState(false)
   const token = localStorage.getItem('access_token')
-  const deleteData = useDelete('http://localhost:8080/admin/delete/project', data.id, token)
+  const deleteData = useDeleteProject('http://localhost:8080/admin/delete/project', data.id, token)
   const [alertMessage, setAlertMessage] = useState('')
   const [show, setShow] = useState(false);
   const performDelete = () => {
@@ -18,7 +18,7 @@ const ProjectCard = ({ data = {}, deleteSuccess }) => {
   }
 
   return (
-    <section className="flex flex-col  bg-slate-800 text-black bg-center bg-cover bg-blend-overlay bg-fixed bg-black/30">
+    <section className="flex flex-col text-black mb-80" >
       <div className="flex flex-col w-min gap-5 p-2 mx-auto bg-white shadow-lg select-none sm:p-4 sm:h-64 rounded-2xl sm:flex-row ">
         <div className="bg-gray-200 h-52 sm:h-full sm:w-72 rounded-xl animate-pulse">
           immagine
@@ -39,18 +39,18 @@ const ProjectCard = ({ data = {}, deleteSuccess }) => {
             <button className='danger-button' onClick={performDelete}>
               Elimina
             </button>
-            <Link id='dropdownButton' className="w-20 h-8 ml-auto bg-gray-200 rounded-full " onClick={handleCLick}>
+            <Link id='dropdownButton' className="w-20  h-8 ml-auto bg-gray-200 rounded-full " onClick={handleCLick}>
               <BsThreeDots />
-              {open ? <div id="dropdown" className="z-10  text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+              {open ? <div id="dropdown" className="  text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
                 <ul className="py-2" aria-labelledby="dropdownButton">
                   <li>
-                    <Link to={'/admin/create/products/' + data.id} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Aggiungi immagini</Link>
+                    <Link to={'/admin/create/products/' + data.id} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Aggiungi Prodotti</Link>
                   </li>
                   <li>
-                    <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Aggiungi prodotti</a>
+                    <Link to={'/admin/create/images/' + data.id} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Aggiungi Immagini</Link>
                   </li>
                   <li>
-                    <a href="#" className="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Elimina immagini</a>
+                    <Link to={'/admin/edit/images/' + data.id} className="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Elimina immagini</Link>
                   </li>
                   <li>
                     <Link to={'/admin/edit/products/' + data.id} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Modifica prodotti</Link>

@@ -1,8 +1,8 @@
-    
 
 import { useGetToken } from "../../../_Utils/Hooks";
-import Navbar from "../AdminNav/Navbar";
 import Hero from "../../../UsersSIde/HeroSection/Hero";
+
+import Nav from "../../../UsersSIde/navbar/Navbar";
 
 export default function AdminGet ({token}) {
 const url = 'http://localhost:8080/admin/projects'
@@ -17,7 +17,7 @@ if(data){
   return (
   <>
    <section className="flex flex-col min-h-screen bg-slate-800 text-white bg-center bg-cover bg-blend-overlay bg-fixed bg-black/30">
-        <Navbar />
+        <Nav />
         <Hero />
 
 

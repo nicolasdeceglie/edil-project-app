@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useGet, useGetToken } from '../../_Utils/Hooks'
-import { useParams } from 'react-router-dom'
 import NewProject from './ProjectForm/NewProject'
 import Navbar from './AdminNav/Navbar'
 import ProjectCard from './ProjectForm/ProjectCard'
@@ -9,6 +8,8 @@ const Project = ({token}) => {
   const { data, error, isLoading, mutate } = useGetToken('http://localhost:8080/admin/projects', token)
   const [alertShow, setAlertShow] = useState(false);
   const [alertMessage, setAlertMessage]=  useState('')
+  
+  
   const alertDismiss = () => {
     setAlertShow(false)
     mutate()
@@ -23,13 +24,11 @@ if(data){
   return (
     <>
       <Navbar />
-      <main className='bg-slate-800 h-screen'>
-      <section className='shadow-lg h-full mx-auto py-36 grid place-items-center gap-5 '>
+      <main className='bg-white flex '>
+      <section className='shadow-lg mx-auto h-screen py-36 flex flex-col mb-80 gap-5 '>
           {data.map(project => (
             <ProjectCard key={project.id} deleteSuccess={deleteSuccess} data={project}/>
           ))}
-          
-            <NewProject />
       </section>
 
          

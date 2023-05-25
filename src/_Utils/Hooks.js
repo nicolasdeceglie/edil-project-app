@@ -13,7 +13,6 @@ const useGet = (url, id = 0) => {
     }
 
     const {data, error, mutate} = useSWR (finalUrl, fetcher);
-
     return {
         data : data,
         error: error,
@@ -47,13 +46,29 @@ const useGetToken = (url, token, id = 0) => {
 // FINE - UseGet
 
 // INIZIO - UsePut -> Hook per modifica dati
-const usePut = (url, id, token) => {
+const usePut = (url, token) => {
+    
+    const header = {
+        headers: { Authorization: `Bearer ${token}` }
+    };
+    // usePut restituisce una funzione da restituire in fase di submit
+    return (id, data, successFn) => {   
+        const finalUrl = url + "/" + id; // Data -> l'oggetto con i dati da salvare; successFn -> la funzione da eseguire nel then
+        axios.put(finalUrl, data, header).then(result => {
+            if(result.data){
+                successFn(); // Se il salvataggio va a buon fine il "then" eseguirà òa funzione successFn
+            }
+        });
+    }
+}
+const usePutProject = (url, token, id) => {
     const finalUrl = url + "/" + id;
     const header = {
         headers: { Authorization: `Bearer ${token}` }
     };
     // usePut restituisce una funzione da restituire in fase di submit
-    return (data, successFn) => {    // Data -> l'oggetto con i dati da salvare; successFn -> la funzione da eseguire nel then
+    return ( data, successFn) => {   
+         // Data -> l'oggetto con i dati da salvare; successFn -> la funzione da eseguire nel then
         axios.put(finalUrl, data, header).then(result => {
             if(result.data){
                 successFn(); // Se il salvataggio va a buon fine il "then" eseguirà òa funzione successFn
@@ -78,12 +93,27 @@ const usePost = (url, token) => {
     }
 }
 
-const useDelete = (url, id, token) => {
+const useDelete = (url, token) => {
+    
+    const header = {
+        headers: { Authorization: `Bearer ${token}` }
+    };
+    return (id, successFn) => {
+        const finalUrl = url + '/' + id;
+        axios.delete(finalUrl, header).then(result => {
+            if(result.data) {
+                successFn();
+            }
+        })
+    }
+}
+const useDeleteProject = (url, id, token) => {
     const finalUrl = url + '/' + id;
     const header = {
         headers: { Authorization: `Bearer ${token}` }
     };
-    return (successFn) => {
+    return ( successFn) => {
+        
         axios.delete(finalUrl, header).then(result => {
             if(result.data) {
                 successFn();
@@ -93,4 +123,4 @@ const useDelete = (url, id, token) => {
 }
 
  
-export {useGet, useGetToken ,usePut, usePost, useDelete};
+export {useGet, useGetToken ,usePut, usePost, useDelete, usePutProject, useDeleteProject};
