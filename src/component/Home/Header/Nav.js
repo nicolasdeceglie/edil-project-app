@@ -2,79 +2,60 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Collapse from "@material-ui/core/Collapse";
 import Hidden from "@material-ui/core/Hidden";
+import CloseIcon from '@mui/icons-material/Close';
+import MenuIcon from '@mui/icons-material/Menu';
 
 const menus = [
   {
     id: 1,
     title: "Home",
-    link: "/"
+    link: "/home"
   },
   {
     id: 2,
-    title: "About",
+    title: "About us",
     link: "/about",
   },
   {
     id: 4,
-    title: "Services",
+    title: "Servizi",
     link: "/services",
   },
   {
     id: 6,
-    title: "All Project",
-    link: "/portfolio",
+    title: "Progetti",
+    link: "/projects",
   },
   {
     id: 8,
-    title: "Contact",
+    title: "Contattaci",
     link: "/contact",
   },
   {
     id: 9,
-    title: "Pages",
-    link: "/#",
-    submenu: [
-      {
-        id: 92,
-        title: "Single Blog",
-        link: "/singlepost",
-      },
-      {
-        id: 932,
-        title: "Services Details",
-        link: "/servicesdetails",
-      },
-      {
-        id: 95,
-        title: "Single Portfolio",
-        link: "/singleportfolio",
-      },
-    ],
-  },
+    title: 'Accedi',
+    link: '/login'
+  }
+  
 ];
 
 const Nav = () => {
   const [menuShow, setMenuShow] = useState(false);
 
-  
+
 
   const mobileMenuHandler = () => {
     setMenuShow((prevState) => !prevState);
   };
 
-  const NavURL = window.location.pathname;
 
   return (
     <div>
-      <div className="mobile-menu-item">
-        <i
-          id="mobile_menu_icon"
-          className="fas fa-align-justify"
-          onClick={mobileMenuHandler}
-        ></i>
+      <div className="mobile-menu-item" onClick={mobileMenuHandler}>
+        {menuShow ? <CloseIcon className="cursor-pointer" /> : <MenuIcon className="cursor-pointer" />}
         <Hidden lgUp>
           <Collapse in={menuShow} timeout="auto" unmountOnExit>
-            <nav className={NavURL ? "" : ""}>
+            <nav>
               <ul className="menu-items">
                 {menus.map((item) => (
                   <li key={item.id}>
@@ -91,11 +72,12 @@ const Nav = () => {
       <Hidden mdDown>
         <nav
           id="responsive-menu"
-          className={NavURL ? "menu-style-one menu-two" : "menu-style-one"}
+          className=" menu-two menu-style-one"
+
         >
           <ul className="menu-items">
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/home">Home</Link>
             </li>
             <li>
               <Link to="/about">About</Link>
@@ -104,34 +86,15 @@ const Nav = () => {
               <Link to="/services">Services</Link>
             </li>
             <li>
-              <Link to="/portfolio">All Project</Link>
+              <Link to="/projects">Progetti</Link>
             </li>
             <li>
-              <Link to="/blog">News</Link>
+              <Link to="/contact">Contattaci</Link>
             </li>
             <li>
-              <Link to="/contact">Contact</Link>
+              <Link to="/login">Accedi</Link>
             </li>
-            <li>
-              <a href="javascript:">Pages</a>
-              <ul className="submenu">
-                <li>
-                  <Link to="/shop">Shop</Link>
-                </li>
-                <li>
-                  <Link to="/singlepost">Single Blog</Link>
-                </li>
-                <li>
-                  <Link to="/servicesdetails">Services Details</Link>
-                </li>
-                <li>
-                  <Link to="/singleproduct">Single Product</Link>
-                </li>
-                <li>
-                  <Link to="/singleportfolio">Single Portfolio</Link>
-                </li>
-              </ul>
-            </li>
+            
           </ul>
         </nav>
       </Hidden>

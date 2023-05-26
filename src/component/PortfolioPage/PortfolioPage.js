@@ -7,7 +7,7 @@ const PortfolioPage = () => {
     return (
         <div>
             <Header />
-            <HeroArea slug='RECENT PROJECT SHOWCASE' title='Our Portfolio' />
+            <HeroArea slug='SCORRI I NOSTRI ULTIMI PRGETTI' title='I Nostri Progetti' />
             <OurPortfolio />
         </div>
     );

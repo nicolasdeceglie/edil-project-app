@@ -11,7 +11,7 @@ const OurServicePage = () => {
     return (
         <div>
             <Header />
-            <HeroArea slug='WHO WE ARE' title='Our Services' />
+            <HeroArea slug='CHI SIAMO' title='I Nostri Servizi' />
             <Services />
             <CallToAction />
             <OurService />

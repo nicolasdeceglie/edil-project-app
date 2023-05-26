@@ -23,7 +23,7 @@ const Header = () => {
                 </Grid>
             </Grid>
         </Grid>
-    );
-};
+    )
+}
 
 export default Header;

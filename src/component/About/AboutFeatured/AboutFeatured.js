@@ -1,7 +1,6 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
-import VideoImage from '../../../images/video_img.jpg';
-
+import AboutUsImages from '../../../images/AbouUsImage.jpg'
 const AboutFeatured = () => {
   return (
     <section className="featured-about-wrap sada-bg section-padding">
@@ -23,13 +22,11 @@ const AboutFeatured = () => {
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
               </li>
             </ul>
-            <a href="#" className="theme_btn">SCOPRI DI PIÙ</a>
           </Grid>
         </Grid>
-        <Grid item md={1}></Grid>
         <Grid item md={5} sm={12} xs={12} className="col-lg-5 offset-lg-1 col-md-12">
           <Grid className="video-section-img">
-            <img src={VideoImage} alt=""/>
+            <img src={AboutUsImages} alt="about-us" style={{borderRadius: '8px'}}/>
           </Grid>
         </Grid>
       </Grid>

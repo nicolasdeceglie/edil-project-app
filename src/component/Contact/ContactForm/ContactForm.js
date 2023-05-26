@@ -58,15 +58,6 @@ const ContactForm = () => {
                     placeholder="Inserisci una breve descrizione delle eventuali modifiche da fare"
                   />
                 </Grid>
-                <Grid item lg={4} xs={12} md={4} className="form-group">
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="subject"
-                    id="subject"
-                    placeholder="Inserisci città"
-                  />
-                </Grid>
               </Grid>
               <Grid className="row">
                 <Grid className="form-group col-12 col-md-12 col-sm-12 col-xl-12 message-box">
